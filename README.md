@@ -1,0 +1,5 @@
+# CSE-215-UCSC
+
+Rocks DB is an embedded, high-performance, persistent key-value storage engine developed at Facebook. It achieves an increase in transaction throughput and a significant decrease in write amplification, yet increases average read latencies by a marginal amount. Rocks DB achieves this by favoring recent writers against recent reads. The keys that have not been written/updated for a while will keep getting pushed to lower levels. This causes read scan latency to increase for important keys. Definitely caching helps address this problem to some extent, but the cache is small, and data can be very large.
+
+In this paper, we explore the limitations of current approaches taken by RocksDB like caching to address the issue. We finally give a probabilistic constant time solution to solve this problem at the expense of extra CPU operations. We then explore how to make sure these extra CPU tasks do not interfere with other operations. The idea is to select the data that has a tendency of being read a lot, the “HOT DATA”, and push them to higher levels. 
